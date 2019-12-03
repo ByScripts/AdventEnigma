@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+    * { 
+     box-sizing: border-box;
+    }
+
+    [v-cloak] { display: none; }
+
+    .chars {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .char {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16.6vw;
+      height: 25vh;
+      font-size: 4rem;
+      background-color: #F1F1F1;
+      color: #1F1F1F;
+      border: 1px solid #E0E0E0;
+    }
+
+    .code {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 20vh;
+    }
+
+    .selected {
+      background-color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      from: null,
+      codeChars: [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+      ],
+    };
+  },
+  computed: {
+    isWon() {
+      return this.codeChars.join('') === 'G93LF67EB28JK1HD4MCN5IOA';
+    }
+  },
+  methods: {
+    moveChar(index) {
+      if(this.from === null) {
+        this.from = index;
+        return;
+      }
+      
+      this.$set(this.codeChars, index, this.codeChars.splice(this.from, 1, this.codeChars[index])[0])
+      this.from = null
+    }
+  }
+})
+</script>
+</body>
+</html>
